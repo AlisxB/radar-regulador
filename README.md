@@ -83,6 +83,15 @@ O `document_id` é obrigatório: escopa o retrieval do agente ao documento abert
 - Chat colapsável por documento no painel de detalhe.
 - Estados de loading/erro, timeout + abort no fetch, linhas navegáveis por teclado.
 
+## Testes
+
+```bash
+node --test tests/                 # unitários (offline)
+RADAR_LIVE=1 node --test tests/    # + smoke test contra o webhook real
+```
+
+Cobrem normalização/dedupe, defaults, escaping de HTML e parsing do estado da URL.
+
 ## Segurança / pendências
 
 - ⚠️ Os dois webhooks são **públicos e sem auth**; o CORS reflete qualquer origem. Qualquer um lê os normativos e consome o LLM (custo). Para produção: endpoint read-only + auth, CORS restrito.
