@@ -1,5 +1,5 @@
 
-const API_URL = "https://n8n.desenrolaai.tech/webhook/9bbac907-041a-4548-bf3a-662178983bfe";
+const API_URL = "./hackaton/output.json";
 const CHAT_URL = "https://n8n.desenrolaai.tech/webhook/e5214df5-78fc-4f1d-ad8e-60543b0605e1";
 const REF_DATE = new Date("2026-09-24T12:00:00Z");
 const REF_DAY = new Date("2026-09-24T00:00:00Z");
@@ -32,8 +32,8 @@ function diffDays(dateStr){
 }
 function fmtImpact(dir){
   const d = urgencyClass(dir);
-  if(d.startsWith("up") || d.startsWith("alta")) return "↗";
-  if(d.startsWith("down") || d.startsWith("queda")) return "↘";
+  if(d.startsWith("up") || d.startsWith("positiv") || d.startsWith("alta")) return "↗";
+  if(d.startsWith("down") || d.startsWith("negativ") || d.startsWith("queda")) return "↘";
   return "→";
 }
 function fmtDeadline(dateStr){
@@ -66,6 +66,19 @@ function normTrace(t){
     .map(x => ({ exact_quote: str(x && x.exact_quote), article_or_section: str(x && x.article_or_section) }))
     .filter(x => x.exact_quote);
 }
+function normArr(v, fn){ return Array.isArray(v) ? v.map(fn).filter(Boolean) : []; }
+function normCitation(c){ c = c || {}; const title = str(c.title); const url = str(c.url); if(!title && !url) return null; return { title: title || url, url, cited_text: str(c.cited_text) }; }
+function normSources(obj){
+  if(!obj || typeof obj !== "object" || Array.isArray(obj)) return [];
+  return Object.entries(obj)
+    .map(([title, url]) => ({ title: str(title), url: str(url), cited_text: "" }))
+    .filter(c => c.url || c.title);
+}
+function normEntity(e){ e = e || {}; const name = str(e.name); return name ? { name, type: str(e.type) || "outro", role: str(e.role) } : null; }
+function normLaw(l){ l = l || {}; const ref = str(l.ref); return ref ? { ref, description: str(l.description) } : null; }
+function normIndicator(i){ i = i || {}; const indicator = str(i.indicator); if(!indicator) return null; const v = typeof i.value === "number" ? i.value : (i.value != null && i.value !== "" ? Number(i.value) : null); return { indicator, value: Number.isFinite(v) ? v : null, unit: str(i.unit), period: str(i.period), source: str(i.source) }; }
+function normImpactLink(x){ x = x || {}; const agent = str(x.agent); return agent ? { agent, effect: str(x.effect), direction: str(x.direction) || "Neutro" } : null; }
+function safeUrl(u){ const s = str(u); return /^https?:\/\//i.test(s) ? s : ""; }
 function normDoc(raw, i){
   raw = raw || {};
   const name = str(raw.document_name);
@@ -84,7 +97,15 @@ function normDoc(raw, i){
     summary: str(raw.summary),
     prazos_acao: Array.isArray(raw.prazos_acao) ? raw.prazos_acao.map(normPrazo) : [],
     financial_impact: normImpact(raw.financial_impact),
-    traceability: normTrace(raw.traceability)
+    traceability: normTrace(raw.traceability),
+    citations: (Array.isArray(raw.citations) && raw.citations.length) ? normArr(raw.citations, normCitation) : normSources(raw.sources),
+    entities: normArr(raw.entities, normEntity),
+    laws: normArr(raw.laws, normLaw),
+    market_context: normArr(raw.market_context, normIndicator),
+    impact_chain: normArr(raw.impact_chain, normImpactLink),
+    source_file: str(raw.source_file),
+    published_at: isDate(raw.published_at) ? raw.published_at : null,
+    ingested_at: str(raw.ingested_at)
   };
 }
 function buildDocs(raw){
@@ -134,12 +155,12 @@ function setStatus(kind, msg){
   const db = document.getElementById("detailBody");
   const meta = document.getElementById("countMeta");
   if(kind === "loading"){
-    tb.innerHTML = `<div class="mono" style="padding:20px;color:var(--muted-2);font-size:12px">carregando webhook n8n…</div>`;
+    tb.innerHTML = `<div class="mono" style="padding:20px;color:var(--muted-2);font-size:12px">carregando…</div>`;
     db.innerHTML = `<div class="mono" style="padding:16px;color:var(--muted-2);font-size:12px">aguardando dados…</div>`;
     meta.textContent = "carregando…";
   } else if(kind === "error"){
     tb.innerHTML = `<div class="mono" style="padding:20px;color:var(--red);font-size:12px">erro ao carregar webhook: ${esc(msg)}</div>`;
-    db.innerHTML = `<div class="mono" style="padding:16px;color:var(--red);font-size:12px">falha no fetch. verifique CORS e se o workflow n8n está ativo.</div>`;
+    db.innerHTML = `<div class="mono" style="padding:16px;color:var(--red);font-size:12px">falha ao carregar a fonte de dados. verifique o caminho/endpoint e o CORS.</div>`;
     meta.textContent = "erro";
   }
 }
@@ -202,10 +223,10 @@ function renderKpis(){
   const relev = DOCS.filter(d => d.is_relevant === true).length;
   const ativos = DOCS.filter(d => { const n = diffDays(d.prazos_acao[0]?.deadline_date); return n !== null && n >= 0 && n <= 30; }).length;
   const criticas = DOCS.filter(d => d.grau_urgencia === "crítica").length;
-  const traced = DOCS.filter(d => d.traceability.length > 0).length;
+  const traced = DOCS.filter(d => d.traceability.length > 0 || d.citations.length > 0).length;
   const orgaos = [...new Set(DOCS.map(d => d.orgao_emissor).filter(o => o && o !== "—"))].join(", ");
   document.getElementById("kpiTotal").textContent = `${total} docs`;
-  document.getElementById("kpiTotalSub").textContent = (orgaos || "—") + " · via webhook n8n";
+    document.getElementById("kpiTotalSub").textContent = (orgaos || "—") + " · fonte de dados";
   document.getElementById("kpiRelev").textContent = `${relev} / ${total}`;
   document.getElementById("kpiPrazos").textContent = `${ativos} com deadline ≤30d`;
   document.getElementById("kpiPrazosSub").textContent = `${criticas} críticas · risco perda prazo`;
@@ -240,7 +261,7 @@ function renderTable(){
     div.onkeydown = e => { if(e.key === "Enter" || e.key === " "){ e.preventDefault(); state.selectedId = d.id; renderAll(); } };
     root.appendChild(div);
   });
-  document.getElementById("countMeta").textContent = `${list.length} docs · webhook n8n`;
+  document.getElementById("countMeta").textContent = `${list.length} docs`;
   writeUrl();
 }
 
@@ -253,7 +274,7 @@ function renderDetail(){
   }
   const prazos = d.prazos_acao.length ? d.prazos_acao : [{ has_deadline: false, deadline_date: null, action_required: "sem prazo mapeado" }];
   root.innerHTML = `
-    <div class="mono" style="font-size:10px;letter-spacing:.12em;color:var(--muted-2)">${esc(d.orgao_emissor)} · ${esc(d.classification)} · ${esc(d.document_id)}</div>
+    <div class="mono" style="font-size:10px;letter-spacing:.12em;color:var(--muted-2)">${esc(d.orgao_emissor)} · ${esc(d.classification)} · ${esc(d.document_id)}${d.published_at ? " · " + esc(d.published_at) : ""}</div>
     <div style="font-size:16px;font-weight:600;line-height:1.3">${esc(d.document_name)}</div>
     <div class="summary">${esc(d.summary)}</div>
 
@@ -283,6 +304,20 @@ function renderDetail(){
       ` : `<div class="mono" style="font-size:12px;color:var(--muted-2);border:1px dashed var(--border);border-radius:10px;padding:12px">sem impacto financeiro mapeado</div>`}
     </div>
 
+    ${d.market_context.length ? `
+      <div class="block">
+        <div class="block-label">contexto de mercado</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          ${d.market_context.map(m => `
+            <div style="display:flex;justify-content:space-between;gap:8px">
+              <span class="mono" style="font-size:11px;color:var(--muted)">${esc(m.indicator)}${m.period ? " · " + esc(m.period) : ""}</span>
+              <span class="mono" style="font-size:11px;color:#e4e4e7">${m.value == null ? "—" : esc(m.value)} ${esc(m.unit)}</span>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+    ` : ""}
+
     ${d.traceability.length ? `
       <div class="block">
         <div class="block-label">traceability · citação literal (${d.traceability.length})</div>
@@ -291,6 +326,45 @@ function renderDetail(){
             <div class="trace" style="padding:8px 12px">
               <div class="mono" style="font-size:9px;color:var(--muted-2);margin-bottom:4px">${esc(t.article_or_section || "—")}</div>
               <div class="mono" style="font-size:11px;line-height:1.6;color:var(--text)">“${esc(t.exact_quote)}”</div>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+    ` : ""}
+
+    ${d.citations.length ? `
+      <div class="block">
+        <div class="block-label">fontes externas · web (${d.citations.length})</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          ${d.citations.map(c => `
+            <div class="trace" style="padding:8px 12px">
+              ${safeUrl(c.url) ? `<a href="${esc(safeUrl(c.url))}" target="_blank" rel="noopener noreferrer" class="mono" style="font-size:11px;color:#86efac;text-decoration:none">${esc(c.title)}</a>` : `<div class="mono" style="font-size:11px;color:#86efac">${esc(c.title)}</div>`}
+              ${c.cited_text ? `<div class="mono" style="font-size:10px;line-height:1.5;color:#a1a1aa;margin-top:4px">“${esc(c.cited_text)}”</div>` : ""}
+            </div>
+          `).join("")}
+        </div>
+      </div>
+    ` : ""}
+
+    ${(d.entities.length || d.laws.length) ? `
+      <div class="block">
+        <div class="block-label">entidades e leis</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          ${d.entities.map(e => `<span class="mono" style="font-size:11px;border:1px solid var(--border);border-radius:6px;padding:4px 8px;background:#18181b">${esc(e.name)}${e.type ? " · " + esc(e.type) : ""}</span>`).join("")}
+          ${d.laws.map(l => `<span class="mono" style="font-size:11px;border:1px solid var(--border-2);border-radius:6px;padding:4px 8px;background:#0f0f10;color:var(--amber)">${esc(l.ref)}</span>`).join("")}
+        </div>
+      </div>
+    ` : ""}
+
+    ${d.impact_chain.length ? `
+      <div class="block">
+        <div class="block-label">cadeia de impacto</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          ${d.impact_chain.map(x => `
+            <div style="display:flex;gap:8px;align-items:baseline">
+              <span class="mono" style="font-size:11px;color:${urgencyClass(x.direction).startsWith("negativ") ? "var(--red)" : urgencyClass(x.direction).startsWith("positiv") ? "#86efac" : "var(--muted)"}">${esc(fmtImpact(x.direction))}</span>
+              <span class="mono" style="font-size:11px;color:#e4e4e7">${esc(x.agent)}</span>
+              <span class="mono" style="font-size:10px;color:var(--muted)">${esc(x.effect)}</span>
             </div>
           `).join("")}
         </div>

@@ -104,9 +104,50 @@ test("filtered aplica filtro de órgão e renováveis", () => {
   assert.equal(run("filtered().length"), 0);
 });
 
-test("live: webhook de análises devolve array (RADAR_LIVE=1)", { skip: !process.env.RADAR_LIVE }, async () => {
+test("fmtImpact mapeia direções do schema", () => {
   const { run } = load();
-  const res = await fetch(run("API_URL"), { headers: { Accept: "application/json" } });
-  assert.equal(res.status, 200);
-  assert.ok(Array.isArray(await res.json()));
+  assert.equal(run("fmtImpact")("Positivo"), "↗");
+  assert.equal(run("fmtImpact")("Negativo"), "↘");
+  assert.equal(run("fmtImpact")("Neutro"), "→");
+  assert.equal(run("fmtImpact")("Incerteza/Indeterminado"), "→");
+});
+
+test("renderiza campos de pesquisa e sanitiza URL", () => {
+  const { run, store } = load();
+  const raw = [{
+    document_name: "Doc", document_id: "d1", grau_urgencia: "alta",
+    entities: [{ name: "<b>x</b>", type: "orgao" }],
+    citations: [{ title: "evil", url: "javascript:alert(1)", cited_text: "q" }],
+    market_context: [{ indicator: "PLD SE", value: 850, unit: "R$/MWh" }],
+    impact_chain: [{ agent: "gerador", effect: "e", direction: "Negativo" }],
+  }];
+  run("DOCS = " + JSON.stringify(run("buildDocs")(raw)) + "; state.selectedId = DOCS[0].id;");
+  run("renderDetail()");
+  const html = store.detailBody.innerHTML;
+  assert.ok(!/<b>x<\/b>/.test(html), "entidade deve estar escapada");
+  assert.ok(!/href="javascript:/i.test(html), "url javascript: não pode virar href");
+  assert.ok(html.includes("PLD SE"));
+  assert.ok(html.includes("gerador"));
+});
+
+test("sources (dict) vira citations (array)", () => {
+  const { run } = load();
+  const [d] = run("buildDocs")([{ document_name: "D", document_id: "d1", sources: { "a.com": "https://a.com", "b.com": "https://b.com" } }]);
+  assert.equal(d.citations.length, 2);
+  assert.equal(d.citations[0].title, "a.com");
+  assert.equal(d.citations[0].url, "https://a.com");
+});
+
+test("live: fonte primária devolve array (RADAR_LIVE=1)", { skip: !process.env.RADAR_LIVE }, async () => {
+  const { run } = load();
+  const url = run("API_URL");
+  let data;
+  if(/^https?:\/\//.test(url)){
+    const res = await fetch(url, { headers: { Accept: "application/json" } });
+    assert.equal(res.status, 200);
+    data = await res.json();
+  } else {
+    data = JSON.parse(fs.readFileSync(path.join(__dirname, "..", url.replace(/^\.\//, "")), "utf8"));
+  }
+  assert.ok(Array.isArray(data));
 });
