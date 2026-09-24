@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Radar Regulatório — Análise de Normativos | Desafio 2.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="topbar mono">
+    <div style="display:flex;align-items:center;gap:12px">
+      <span style="font-weight:600;letter-spacing:.06em">RADAR / RENOVÁVEIS // 2.3</span>
+      <span class="dot"></span>
+      <span style="font-size:10px;color:var(--muted-2)">LIVE · Casa dos Ventos</span>
+    </div>
+    <div style="display:flex;gap:12px;font-size:10px;color:var(--muted-2)">
+      <span>n8n ACTIVE</span>
+      <span>PostgreSQL + pgvector CONNECTED</span>
+      <span>/webhook/radar</span>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="kpi-label mono">total capturado</div><div class="kpi-value mono" id="kpiTotal">—</div><div class="kpi-sub mono" id="kpiTotalSub">—</div></div>
+    <div class="kpi"><div class="kpi-label mono">relevância alta</div><div class="kpi-value mono" id="kpiRelev">—</div><div class="kpi-sub mono">is_relevant = true</div></div>
+    <div class="kpi"><div class="kpi-label mono">prazos ativos</div><div class="kpi-value mono" id="kpiPrazos">—</div><div class="kpi-sub mono" id="kpiPrazosSub">deadline ≤30d</div></div>
+    <div class="kpi"><div class="kpi-label mono">cobertura rastreável</div><div class="kpi-value mono" id="kpiTrace">—</div><div class="kpi-sub mono">com citação literal no texto</div></div>
+  </div>
+
+  <div class="filters mono">
+    <input id="q" class="input mono" placeholder="busca vetorial pgvector... ex: outorga hidrelétrica, corte eólica, TUST" />
+    <select id="orgao" class="select"><option>Todos</option><option>DOU</option><option>ANEEL</option><option>MME</option><option>CCEE</option><option>ONS</option></select>
+    <select id="urg" class="select"><option>Todas</option><option>baixa</option><option>moderada</option><option>alta</option><option>crítica</option></select>
+    <select id="sort" class="select"><option value="prazo">ordenar: prazo</option><option value="relevancia">ordenar: relevância</option><option value="urgencia">ordenar: urgência</option></select>
+    <label style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);border:1px solid var(--border);border-radius:10px;padding:0 12px;height:38px;background:var(--panel)"><input id="renov" type="checkbox" /> só renováveis</label>
+    <span id="countMeta" style="font-size:11px;color:var(--muted-2);margin-left:auto"></span>
+    <button id="refresh" class="btn mono" style="height:38px">↻ atualizar</button>
+    <span id="updatedMeta" class="mono" style="font-size:10px;color:var(--muted-2)"></span>
+  </div>
+
+  <div class="layout">
+    <div class="table-wrap">
+      <div class="table-head mono"><span>Document</span><span>Órgão</span><span>Classificação</span><span>Urgência</span><span>Prazo</span><span>Impacto</span></div>
+      <div id="tableBody"></div>
+    </div>
+    <div class="detail">
+      <div class="detail-head mono"><span style="font-size:11px;letter-spacing:.12em;color:var(--muted-2)">DETALHE · TRACEABILITY</span><span style="font-size:10px;color:var(--muted-2)">radar_regulatorio_analises</span></div>
+      <div id="detailBody" class="detail-body"></div>
+    </div>
+  </div>
+
+  <div class="timeline mono">
+    <div style="display:flex;justify-content:space-between"><span style="font-size:11px;letter-spacing:.12em;color:var(--muted-2)">TIMELINE · PRÓXIMOS 60 DIAS · COUNTDOWN</span><span style="font-size:10px;color:var(--muted-2)">REF 2026-09-24 → +60d</span></div>
+    <div class="tline"></div>
+    <div id="timelineDots" class="dots"></div>
+  </div>
+
+  <div class="footer mono"><span>radar_regulatorio_analises · PostgreSQL 16 · pgvector 0.7 · n8n workflow radar-v2</span><span>PRECISION 94.2% · RECALL 88.7% · F1 91.3% · Casa dos Ventos · ProEnergia 2026</span></div>
+
+<script src="./script.js"></script>
+</body>
+</html>
