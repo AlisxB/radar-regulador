@@ -41,6 +41,13 @@ function fmtDeadline(dateStr){
   if(days === null) return "—";
   return `${dateStr} · ${days >= 0 ? `D-${days}` : `D+${Math.abs(days)}`}`;
 }
+function nextPrazoDate(d){
+  const dated = d.prazos_acao.map(p => p.deadline_date).filter(Boolean);
+  if(!dated.length) return null;
+  const upcoming = dated.filter(x => { const n = diffDays(x); return n !== null && n >= 0; });
+  if(!upcoming.length) return dated.slice().sort((a, b) => new Date(b) - new Date(a))[0];
+  return upcoming.sort((a, b) => diffDays(a) - diffDays(b))[0];
+}
 function flagVal(v){ return v === true ? "TRUE" : v === false ? "FALSE" : "—"; }
 function flagColor(v){ return v === true ? "var(--ok)" : "var(--muted)"; }
 
@@ -212,8 +219,8 @@ function filtered(){
   }).sort((a, b) => {
     if(state.sort === "relevancia") return (parseFloat(b.relevance_score) || 0) - (parseFloat(a.relevance_score) || 0);
     if(state.sort === "urgencia") return (URG_ORDER[a.grau_urgencia] ?? 9) - (URG_ORDER[b.grau_urgencia] ?? 9);
-    const da = a.prazos_acao[0]?.deadline_date ? new Date(a.prazos_acao[0].deadline_date) : new Date("2099-01-01");
-    const db = b.prazos_acao[0]?.deadline_date ? new Date(b.prazos_acao[0].deadline_date) : new Date("2099-01-01");
+    const da = nextPrazoDate(a) ? new Date(nextPrazoDate(a)) : new Date("2099-01-01");
+    const db = nextPrazoDate(b) ? new Date(nextPrazoDate(b)) : new Date("2099-01-01");
     return da - db;
   });
 }
@@ -221,7 +228,7 @@ function filtered(){
 function renderKpis(){
   const total = DOCS.length;
   const relev = DOCS.filter(d => d.is_relevant === true).length;
-  const ativos = DOCS.filter(d => { const n = diffDays(d.prazos_acao[0]?.deadline_date); return n !== null && n >= 0 && n <= 30; }).length;
+  const ativos = DOCS.filter(d => { const n = diffDays(nextPrazoDate(d)); return n !== null && n >= 0 && n <= 30; }).length;
   const criticas = DOCS.filter(d => d.grau_urgencia === "crítica").length;
   const traced = DOCS.filter(d => d.traceability.length > 0 || d.citations.length > 0).length;
   const orgaos = [...new Set(DOCS.map(d => d.orgao_emissor).filter(o => o && o !== "—"))].join(", ");
@@ -246,8 +253,8 @@ function renderTable(){
     div.setAttribute("role", "button");
     div.tabIndex = 0;
     div.setAttribute("aria-label", d.document_name);
-    const first = d.prazos_acao[0];
-    const deadlineTxt = first?.deadline_date ? fmtDeadline(first.deadline_date) : "—";
+    const nextDl = nextPrazoDate(d);
+    const deadlineTxt = nextDl ? fmtDeadline(nextDl) : "—";
     const impact = d.financial_impact ? `${fmtImpact(d.financial_impact.direction)} ${esc(d.financial_impact.magnitude)}` : "—";
     div.innerHTML = `
       <div class="cell-doc mono">${esc(d.document_name)}</div>
@@ -477,19 +484,24 @@ function toggleRaw(){
 }
 
 function renderTimeline(){
-  const list = DOCS.filter(d => { const n = diffDays(d.prazos_acao[0]?.deadline_date); return n !== null && n >= 0 && n <= 60; }).sort((a, b) => new Date(a.prazos_acao[0].deadline_date) - new Date(b.prazos_acao[0].deadline_date)).slice(0, 8);
+  const items = [];
+  DOCS.forEach(d => d.prazos_acao.forEach(p => {
+    const n = diffDays(p.deadline_date);
+    if(n !== null && n >= 0 && n <= 60) items.push({ d, p, n });
+  }));
+  items.sort((a, b) => a.n - b.n);
+  const list = items.slice(0, 10);
   const root = document.getElementById("timelineDots");
   root.innerHTML = "";
-  list.forEach(d => {
-    const days = diffDays(d.prazos_acao[0].deadline_date);
+  list.forEach(({ d, p, n }) => {
     const color = d.grau_urgencia === "crítica" ? "var(--red)" : d.grau_urgencia === "alta" ? "var(--orange)" : d.grau_urgencia === "moderada" ? "var(--amber)" : "var(--muted)";
-    const tag = days === null ? "—" : days >= 0 ? `D-${days}` : `D+${Math.abs(days)}`;
+    const tag = `D-${n}`;
     const div = document.createElement("div");
     div.className = "dot-item";
     div.setAttribute("role", "button");
     div.tabIndex = 0;
-    div.setAttribute("aria-label", `${d.document_name} · ${tag}`);
-    div.innerHTML = `<div class="dot-circle" style="background:${color}"></div><div class="mono" style="font-size:11px">${tag}</div><div class="mono" style="font-size:9px;color:var(--muted-2);max-width:12ch;text-align:center;line-height:1.2">${esc(d.document_name.split(" ").slice(0, 3).join(" "))}</div>`;
+    div.setAttribute("aria-label", `${d.document_name} · ${p.deadline_date} · ${tag}`);
+    div.innerHTML = `<div class="dot-circle" style="background:${color}"></div><div class="mono" style="font-size:11px">${tag}</div><div class="mono" style="font-size:9px;color:var(--muted-2);max-width:12ch;text-align:center;line-height:1.2">${esc(d.document_name.split(" ").slice(0, 3).join(" "))}</div><div class="mono" style="font-size:9px;color:var(--muted-2)">${esc(p.deadline_date)}</div>`;
     div.onclick = () => { state.selectedId = d.id; renderAll(); window.scrollTo({ top: 0, behavior: "smooth" }); };
     div.onkeydown = e => { if(e.key === "Enter" || e.key === " "){ e.preventDefault(); state.selectedId = d.id; renderAll(); } };
     root.appendChild(div);

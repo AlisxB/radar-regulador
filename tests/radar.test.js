@@ -9,7 +9,7 @@ const SCRIPT = fs.readFileSync(path.join(__dirname, "..", "script.js"), "utf8");
 function load() {
   const noop = () => {};
   const store = {};
-  const el = (id) => (store[id] ||= { id, innerHTML: "", textContent: "", value: "", disabled: false, style: {}, addEventListener: noop, appendChild: noop, focus: noop });
+  const el = (id) => (store[id] ||= { id, innerHTML: "", textContent: "", value: "", disabled: false, style: {}, children: [], addEventListener: noop, focus: noop, appendChild(c){ this.children.push(c); } });
   const ctx = {
     console, fetch, URL, URLSearchParams, setTimeout, clearTimeout, AbortController, Promise, crypto,
     location: { search: "", pathname: "/index.html" },
@@ -136,6 +136,22 @@ test("sources (dict) vira citations (array)", () => {
   assert.equal(d.citations.length, 2);
   assert.equal(d.citations[0].title, "a.com");
   assert.equal(d.citations[0].url, "https://a.com");
+});
+
+test("nextPrazoDate escolhe o proximo prazo", () => {
+  const { run } = load();
+  const [d] = run("buildDocs")([{ document_name: "D", document_id: "d1",
+    prazos_acao: [{ deadline_date: "2028-01-01" }, { deadline_date: "2026-10-22" }, { deadline_date: "2026-09-30" }] }]);
+  assert.equal(run("nextPrazoDate")(d), "2026-09-30");
+});
+
+test("timeline inclui todos os prazos na janela de 60d", () => {
+  const { run, store } = load();
+  const raw = [{ document_name: "Doc", document_id: "d1", grau_urgencia: "alta",
+    prazos_acao: [{ deadline_date: "2026-09-30" }, { deadline_date: "2026-10-22" }, { deadline_date: "2028-01-01" }] }];
+  run("DOCS = " + JSON.stringify(run("buildDocs")(raw)) + "; state.selectedId = DOCS[0].id;");
+  run("renderTimeline()");
+  assert.equal(store["timelineDots"].children.length, 2);
 });
 
 test("live: fonte primária devolve array (RADAR_LIVE=1)", { skip: !process.env.RADAR_LIVE }, async () => {
