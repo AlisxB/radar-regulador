@@ -42,7 +42,7 @@ function fmtDeadline(dateStr){
   return `${dateStr} · ${days >= 0 ? `D-${days}` : `D+${Math.abs(days)}`}`;
 }
 function flagVal(v){ return v === true ? "TRUE" : v === false ? "FALSE" : "—"; }
-function flagColor(v){ return v === true ? "#86efac" : "var(--muted)"; }
+function flagColor(v){ return v === true ? "var(--ok)" : "var(--muted)"; }
 
 function normPrazo(p){
   p = p || {};
@@ -296,8 +296,8 @@ function renderDetail(){
       ${d.financial_impact ? `
         <div style="display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;gap:6px;flex-wrap:wrap">
-            <span class="mono" style="font-size:11px;border:1px solid var(--border-2);border-radius:6px;padding:4px 8px;background:#F3F8FF;color:var(--text)">${esc(d.financial_impact.direction)}</span>
-            <span class="mono" style="font-size:11px;border:1px solid var(--border-2);border-radius:6px;padding:4px 8px;background:#F3F8FF;color:var(--text)">${esc(d.financial_impact.magnitude)}</span>
+            <span class="mono" style="font-size:11px;border:1px solid var(--border-2);border-radius:6px;padding:4px 8px;background:var(--surface);color:var(--text)">${esc(d.financial_impact.direction)}</span>
+            <span class="mono" style="font-size:11px;border:1px solid var(--border-2);border-radius:6px;padding:4px 8px;background:var(--surface);color:var(--text)">${esc(d.financial_impact.magnitude)}</span>
           </div>
           ${d.financial_impact.justification ? `<div class="mono" style="font-size:12px;color:var(--text);line-height:1.5">${esc(d.financial_impact.justification)}</div>` : ""}
         </div>
@@ -311,7 +311,7 @@ function renderDetail(){
           ${d.market_context.map(m => `
             <div style="display:flex;justify-content:space-between;gap:8px">
               <span class="mono" style="font-size:11px;color:var(--muted)">${esc(m.indicator)}${m.period ? " · " + esc(m.period) : ""}</span>
-              <span class="mono" style="font-size:11px;color:#e4e4e7">${m.value == null ? "—" : esc(m.value)} ${esc(m.unit)}</span>
+              <span class="mono" style="font-size:11px;color:var(--text)">${m.value == null ? "—" : esc(m.value)} ${esc(m.unit)}</span>
             </div>
           `).join("")}
         </div>
@@ -338,8 +338,8 @@ function renderDetail(){
         <div style="display:flex;flex-direction:column;gap:8px">
           ${d.citations.map(c => `
             <div class="trace" style="padding:8px 12px">
-              ${safeUrl(c.url) ? `<a href="${esc(safeUrl(c.url))}" target="_blank" rel="noopener noreferrer" class="mono" style="font-size:11px;color:#86efac;text-decoration:none">${esc(c.title)}</a>` : `<div class="mono" style="font-size:11px;color:#86efac">${esc(c.title)}</div>`}
-              ${c.cited_text ? `<div class="mono" style="font-size:10px;line-height:1.5;color:#a1a1aa;margin-top:4px">“${esc(c.cited_text)}”</div>` : ""}
+              ${safeUrl(c.url) ? `<a href="${esc(safeUrl(c.url))}" target="_blank" rel="noopener noreferrer" class="mono" style="font-size:11px;color:var(--ok);text-decoration:none">${esc(c.title)}</a>` : `<div class="mono" style="font-size:11px;color:var(--ok)">${esc(c.title)}</div>`}
+              ${c.cited_text ? `<div class="mono" style="font-size:10px;line-height:1.5;color:var(--muted);margin-top:4px">“${esc(c.cited_text)}”</div>` : ""}
             </div>
           `).join("")}
         </div>
@@ -350,8 +350,8 @@ function renderDetail(){
       <div class="block">
         <div class="block-label">entidades e leis</div>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
-          ${d.entities.map(e => `<span class="mono" style="font-size:11px;border:1px solid var(--border);border-radius:6px;padding:4px 8px;background:#18181b">${esc(e.name)}${e.type ? " · " + esc(e.type) : ""}</span>`).join("")}
-          ${d.laws.map(l => `<span class="mono" style="font-size:11px;border:1px solid var(--border-2);border-radius:6px;padding:4px 8px;background:#0f0f10;color:var(--amber)">${esc(l.ref)}</span>`).join("")}
+          ${d.entities.map(e => `<span class="mono" style="font-size:11px;border:1px solid var(--border);border-radius:6px;padding:4px 8px;background:var(--chip)">${esc(e.name)}${e.type ? " · " + esc(e.type) : ""}</span>`).join("")}
+          ${d.laws.map(l => `<span class="mono" style="font-size:11px;border:1px solid var(--border-2);border-radius:6px;padding:4px 8px;background:var(--chip);color:var(--amber)">${esc(l.ref)}</span>`).join("")}
         </div>
       </div>
     ` : ""}
@@ -362,8 +362,8 @@ function renderDetail(){
         <div style="display:flex;flex-direction:column;gap:6px">
           ${d.impact_chain.map(x => `
             <div style="display:flex;gap:8px;align-items:baseline">
-              <span class="mono" style="font-size:11px;color:${urgencyClass(x.direction).startsWith("negativ") ? "var(--red)" : urgencyClass(x.direction).startsWith("positiv") ? "#86efac" : "var(--muted)"}">${esc(fmtImpact(x.direction))}</span>
-              <span class="mono" style="font-size:11px;color:#e4e4e7">${esc(x.agent)}</span>
+              <span class="mono" style="font-size:11px;color:${urgencyClass(x.direction).startsWith("negativ") ? "var(--red)" : urgencyClass(x.direction).startsWith("positiv") ? "var(--ok)" : "var(--muted)"}">${esc(fmtImpact(x.direction))}</span>
+              <span class="mono" style="font-size:11px;color:var(--text)">${esc(x.agent)}</span>
               <span class="mono" style="font-size:10px;color:var(--muted)">${esc(x.effect)}</span>
             </div>
           `).join("")}
@@ -387,7 +387,7 @@ function renderDetail(){
         <div id="chatLog" style="display:flex;flex-direction:column;gap:8px;max-height:280px;overflow:auto;margin-bottom:8px"></div>
         <div id="chatError" class="mono" style="font-size:11px;color:var(--red);min-height:14px"></div>
         <div style="display:flex;gap:8px;margin-top:8px;align-items:flex-end">
-          <textarea id="chatInput" class="mono" rows="2" placeholder="pergunte sobre este documento…" style="flex:1;resize:vertical;background:#F7FAFF;color:var(--text);border:1px solid var(--border-2);border-radius:10px;padding:8px 10px;font-size:12px;outline:none"></textarea>
+          <textarea id="chatInput" class="mono" rows="2" placeholder="pergunte sobre este documento…" style="flex:1;resize:vertical;background:var(--surface);color:var(--text);border:1px solid var(--border-2);border-radius:10px;padding:8px 10px;font-size:12px;outline:none"></textarea>
           <button id="chatSend" class="btn mono" style="height:38px">enviar</button>
         </div>
       </div>
@@ -422,7 +422,7 @@ function renderChat(d){
   const bubble = (role, content) => `
     <div style="display:flex;flex-direction:column;gap:2px;align-items:${role === "user" ? "flex-end" : "flex-start"}">
       <div class="mono" style="font-size:9px;color:var(--muted-2)">${role === "user" ? "você" : "agente"}</div>
-      <div style="max-width:90%;white-space:pre-wrap;font-size:12px;line-height:1.5;padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:${role === "user" ? "#1f1f23" : "#0f0f10"};color:var(--text)">${esc(content)}</div>
+      <div style="max-width:90%;white-space:pre-wrap;font-size:12px;line-height:1.5;padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:${role === "user" ? "var(--chip)" : "var(--chip)"};color:var(--text)">${esc(content)}</div>
     </div>`;
   log.innerHTML = c.messages.map(m => bubble(m.role, m.content)).join("") + (c.loading ? bubble("assistant", "…pensando") : "");
   const panel = document.getElementById("chatPanel");
@@ -503,7 +503,19 @@ function renderAll(){
   renderTimeline();
 }
 
+function applyTheme(t){
+  document.documentElement.setAttribute("data-theme", t);
+  const btn = document.getElementById("themeToggle");
+  if(btn) btn.textContent = t === "dark" ? "☀️" : "🌙";
+}
+
 window.addEventListener("DOMContentLoaded", () => {
+  applyTheme(localStorage.getItem("theme") === "dark" ? "dark" : "light");
+  document.getElementById("themeToggle").addEventListener("click", () => {
+    const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    localStorage.setItem("theme", next);
+    applyTheme(next);
+  });
   readUrl();
   syncControls();
   const onSearch = debounce(v => { state.q = v; renderTable(); }, 200);
