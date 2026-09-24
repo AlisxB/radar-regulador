@@ -510,7 +510,7 @@ function applyTheme(t){
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  applyTheme(localStorage.getItem("theme") === "dark" ? "dark" : "light");
+  applyTheme(localStorage.getItem("theme") === "light" ? "light" : "dark");
   document.getElementById("themeToggle").addEventListener("click", () => {
     const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
     localStorage.setItem("theme", next);
