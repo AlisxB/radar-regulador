@@ -1,0 +1,6 @@
+MES_REFERENCIA = Representa o período de referência dos dados, composto pelo mês e o ano correspondentes;
+SUBMERCADO = Representa os quatro (4) submercados de atuação no Sistema Interligado Nacional (SIN) correspondentes ao Sudeste (SE), Sul (S), Nordeste (NE) e Norte (N);
+PERIODO_COMERCIALIZACAO	= Representa o período de comercialização, equivalente a uma hora, dentro do mês e o ano de referência aos quais os dados estão associados.
+DIA = Representa o dia vinculado ao mês e ano de referência aos quais os dados estão associados.
+HORA = Representa a hora do dia aos quais os dados estão associados.
+PLD_HORA = Corresponde ao Preço de Liquidação das Diferenças, determinado por submercado “s”, por período de comercialização “j” (PLDs,j) R$/MWh

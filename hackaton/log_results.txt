@@ -1,0 +1,29 @@
+```json
+{
+  "document_name": "Despacho ANEEL nº 3.695/2026",
+  "orgao_emissor": "Agência Nacional de Energia Elétrica - ANEEL",
+  "classification": "Despacho",
+  "grau_urgencia": "alta",
+  "relevance_score": 0.85,
+  "is_relevant": true,
+  "aplicavel_renovaveis": true,
+  "summary": "O Despacho nº 3.695, publicado no Diário Oficial da União em 24 de setembro de 2026, formalizou a decisão da Diretoria Colegiada da ANEEL de não aprovar, no momento, a representação do Programa de Resposta da Demanda na cadeia de modelos computacionais de otimização eletroenergética utilizados na operação do Sistema Interligado Nacional (SIN) e na formação do Preço de Liquidação das Diferenças (PLD). A ANEEL determinou ao Operador Nacional do Sistema Elétrico (ONS) e à Câmara de Comercialização de Energia Elétrica (CCEE) a continuidade dos estudos técnicos para viabilizar essa integração e a apresentação do respectivo cronograma de implementação. Adicionalmente, estabeleceu o prazo de 90 dias para que ambas as entidades aprimorem os mecanismos de transparência e divulgação do programa.",
+  "prazos_acao": [
+    {
+      "has_deadline": true,
+      "deadline_date": "2026-12-21",
+      "action_required": "Promover o aperfeiçoamento dos mecanismos de divulgação e transparência do programa de Resposta da Demanda por parte do ONS e da CCEE, visando ampliar a disponibilização de informações e acompanhar os benefícios do programa."
+    },
+    {
+      "has_deadline": true,
+      "deadline_date": null,
+      "action_required": "Dar continuidade aos estudos técnicos e aperfeiçoamentos necessários para a adequada representação do programa nos modelos computacionais de otimização, apresentando um cronograma de implementação."
+    }
+  ],
+  "financial_impact": {
+    "direction": "Incerteza/Indeterminado",
+    "magnitude": "Médio",
+    "justification": "Ao postergar a incorporação da Resposta da Demanda nos modelos de formação de preço (como o DESSEM), evita-se volatilidade indesejada ou distorção nos custos marginais de operação (CMO) e no PLD em um cenário de preços com forte variação horária (flutuando entre o piso de R$ 57,31/MWh e picos superiores a R$ 1.000,00/MWh na ponta). Por outro lado, adia-se a otimização tarifária e a remuneração direta e explícita dos grandes consumidores pela oferta de flexibilidade no mercado de curto prazo, dependendo de novos aprimoramentos técnicos e de transparência do ONS e CCEE."
+  }
+}
+```

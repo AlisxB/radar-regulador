@@ -1,0 +1,391 @@
+[
+  {
+    "document_id": "despacho_annel_22092026.pdf",
+    "document_name": "Despacho nº 3.695, de 22 de setembro de 2026",
+    "orgao_emissor": "ANEEL - Agência Nacional de Energia Elétrica",
+    "classification": "Despacho",
+    "grau_urgencia": "alta",
+    "relevance_score": 0.85,
+    "is_relevant": true,
+    "aplicavel_renovaveis": true,
+    "summary": "A ANEEL decidiu não aprovar, neste momento, a representação do programa de Resposta da Demanda nos modelos computacionais de otimização eletroenergética aplicados à operação do Sistema Interligado Nacional (SIN) e à formação de preços (como DESSEM e DECOMP). A agência determinou ao Operador Nacional do Sistema Elétrico (ONS) e à Câmara de Comercialização de Energia Elétrica (CCEE) a continuidade dos estudos técnicos e a submissão de um cronograma para a implementação futura dessa funcionalidade. Além disso, estabeleceu um prazo obrigatório para que ONS e CCEE promovam melhorias nos mecanismos de transparência e divulgação de informações e resultados do programa aos agentes do mercado.",
+    "prazos_acao": [
+      {
+        "has_deadline": true,
+        "deadline_date": "2026-12-23",
+        "action_required": "Promover o aperfeiçoamento dos mecanismos de divulgação e transparência do programa de Resposta da Demanda por parte do ONS e da CCEE, ampliando a disponibilização de informações operacionais e permitindo o adequado acompanhamento de seus benefícios."
+      }
+    ],
+    "financial_impact": {
+      "direction": "Incerteza/Indeterminado",
+      "magnitude": "Médio",
+      "justification": "Ao adiar a integração computacional da Resposta da Demanda nos modelos de formação de preço, a ANEEL evita alterações abruptas na sistemática de cálculo do PLD no curto prazo, mas impede que a redução voluntária de carga atue diretamente amortecendo picos de preços de liquidação. Os dados de mercado anexos evidenciam forte volatilidade intradia no PLD em 2026 — atingindo o piso regulatório de R$ 57,31/MWh no período diurno (devido à forte geração renovável intermitente) e picos severos de até R$ 1.611,04/MWh na ponta (18h-19h). A ausência da Resposta da Demanda nos modelos preserva temporariamente a dependência do despacho térmico para a precificação nesses horários de escassez, mantendo a exposição financeira e alavancagem dos agentes sujeitas a oscilações elevadas no mercado de curto prazo."
+    },
+    "sources": {
+      "atlaspublico.com.br": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEMQRdB1GYAqfhE0Wq4CqAB6tr-Olxz3c5GXpl8oW1bBStCzSsqt2GajVVnfZvN4Pfm5dtBnpwltFGFltd1lQJyzhfFCc-QFiHmSz2x5IXSV5fMcvtyDUM9rZaSgSDjZPdJCCl_ItioEel2lI1BgZgTwWrwwamgAhjcTxVCjgbepDVOeTjmXms4RKvuyzVfd_RuG7VSWw==",
+      "portalradarenergia.com.br": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFIP9TQVNF_JtSNqufFqQwAmzCZMlQp8yhZK3EXJK763Ltp6LrNQtBI_c3TZ3AtqgXWKN9ocT3Z-uwyxJ6H5r4pOW0oMCAYBQU-KUfHOMo4MU1QISryerRHCBY5IKo33iItC0KuGM3FDjylwYJwV3NNFsXk_jSS6VAO7ZfpoST41GT8B09dhWocqx7qEPR7cogNcA45XldBbPlqa808b11nk3jqPOGPDQEOUj5nsQb-Z9v1LFTvuC5VtAk=",
+      "lawinfra.com.br": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHeB6EK99UJXDco1pzdFigsJ64FKVEORS125X5PgbYlHQh3by6yrzWlZyyj6r08ew_ZbvC3NN-pqdkLxsH2D15PjHyoDALPPRpp5NlXcqWLSUPdGzj2kjmA_ngLrzJChfnPC6L_wtTYp3W0MJNXFefBxOJdQLs_pqZrhUfcbnI2CQ4Pb4KEfI_DXJHZxT4ExL_F8xc="
+    }
+  },
+  {
+    "document_name": "Aviso de Suspensão - Pregão Eletrônico ANEEL Nº 90016/2026 - Edital Nº 29/2026",
+    "orgao_emissor": "Agência Nacional de Energia Elétrica - ANEEL",
+    "classification": "Aviso de Suspensão",
+    "grau_urgencia": "baixa",
+    "relevance_score": 0.1,
+    "is_relevant": false,
+    "aplicavel_renovaveis": false,
+    "summary": "A Agência Nacional de Energia Elétrica (ANEEL) tornou pública a suspensão da licitação na modalidade Pregão Eletrônico nº 90016/2026 (Edital nº 29/2026), vinculada ao processo nº 48500.020608/2026-93. O certame visava à contratação de soluções de Tecnologia da Informação e Comunicação (TIC) para desenvolvimento e manutenção de software e soluções de dados. A suspensão foi formalizada pela Gerência de Licitações e Controle de Contratos e Convênios a fim de permitir a revisão do instrumento convocatório.",
+    "prazos_acao": [
+      {
+        "has_deadline": false,
+        "deadline_date": null,
+        "action_required": "Nenhuma ação obrigatória é exigida dos agentes do mercado de energia ou geradores renováveis, tratando-se de procedimento administrativo interno de contratação da ANEEL."
+      }
+    ],
+    "financial_impact": {
+      "direction": "Neutro",
+      "magnitude": "Nulo",
+      "justification": "O documento refere-se exclusivamente à suspensão de um edital de licitação interna para serviços de tecnologia e desenvolvimento de sistemas da ANEEL. Não há qualquer impacto financeiro, tarifário, de margem de alavancagem prudencial ou reflexo nas tarifas/PLD para os agentes operacionais e de comercialização do setor elétrico brasileiro."
+    },
+    "document_id": "aviso_suspensao_22092026.pdf",
+    "sources": {}
+  },
+  {
+    "document_name": "Despacho ANEEL nº 3.695/2026",
+    "orgao_emissor": "Agência Nacional de Energia Elétrica - ANEEL",
+    "classification": "Despacho",
+    "grau_urgencia": "alta",
+    "relevance_score": 0.88,
+    "is_relevant": true,
+    "aplicavel_renovaveis": true,
+    "summary": "A Diretoria Colegiada da ANEEL decidiu não aprovar, neste momento, a representação do programa de Resposta da Demanda nos modelos de otimização eletroenergética aplicados à operação do sistema e à formação de preços. O regulador determinou que o ONS e a CCEE deem continuidade aos estudos necessários para essa integração computacional e apresentem um cronograma de implementação. Adicionalmente, foi assinalado o prazo de 90 dias para que ambas as entidades aprimorem os mecanismos de transparência e divulgação de dados relativos ao programa.",
+    "prazos_acao": [
+      {
+        "has_deadline": true,
+        "deadline_date": "2026-12-23",
+        "action_required": "Promover o aperfeiçoamento dos mecanismos de divulgação e transparência do programa de Resposta da Demanda pelo ONS e CCEE."
+      },
+      {
+        "has_deadline": false,
+        "deadline_date": null,
+        "action_required": "Apresentar cronograma para implementação da representação do programa de Resposta da Demanda nos modelos computacionais após continuidade dos estudos."
+      }
+    ],
+    "financial_impact": {
+      "direction": "Incerteza/Indeterminado",
+      "magnitude": "Médio",
+      "justification": "A não inclusão imediata da Resposta da Demanda na cadeia de modelos computacionais (como DESSEM/DECOMP) evita oscilações artificiais ou não testadas no Preço de Liquidação das Diferenças (PLD) no curto prazo. Por outro lado, posterga a valoração econômica direta dessa flexibilidade operacional no mercado spot para grandes consumidores e comercializadores, mantendo a estrutura tarifária e de preços pautada estritamente pelos custos de oferta térmica e hidrológica vigentes."
+    },
+    "document_id": "despacho_annel_22092026.pdf",
+    "sources": {}
+  },
+  {
+    "document_name": "Despacho nº 2.926, de 4 de agosto de 2026",
+    "orgao_emissor": "Ministério de Minas e Energia / Agência Nacional de Energia Elétrica (ANEEL) / Superintendência de Inovação e Transição Energética",
+    "classification": "Despacho",
+    "grau_urgencia": "baixa",
+    "relevance_score": 0.35,
+    "is_relevant": true,
+    "aplicavel_renovaveis": true,
+    "summary": "O Despacho nº 2.926, de 4 de agosto de 2026, publicado no Diário Oficial da União em 24/09/2026, refere-se ao Processo nº 48500.022685/2026-88 envolvendo a Companhia Piratininga de Força e Luz (CPFL Piratininga). A ANEEL decidiu reconhecer o montante total de R$ 691.528,15 referente à execução do Projeto de Eficiência Energética PE-02937-0086/2019. Com esse reconhecimento, a agência declarou formalmente o encerramento do referido projeto, disponibilizando a íntegra da decisão no portal de legislação da ANEEL.",
+    "prazos_acao": [
+      {
+        "has_deadline": false,
+        "deadline_date": null,
+        "action_required": "Nenhuma ação obrigatória com prazo estabelecido; a publicação trata exclusivamente da homologação de valores praticados e do encerramento administrativo do projeto de eficiência energética."
+      }
+    ],
+    "financial_impact": {
+      "direction": "Positivo",
+      "magnitude": "Baixo",
+      "justification": "O ato homologa e reconhece o repasse/cumprimento da obrigação de investimento no valor de R$ 691.528,15 em Eficiência Energética para a concessionária CPFL Piratininga (CNPJ 04.172.213/0001-51). O impacto financeiro é pontual e circunscrito à distribuidora, sem alteração nos preços de liquidação de diferenças (PLD) do mercado de curto prazo, cujas médias operam entre R$ 57,31/MWh e R$ 416,88/MWh ao longo de 2026."
+    },
+    "document_id": "despacho_annel_04062026.pdf",
+    "sources": {}
+  },
+  {
+    "document_name": "Despacho nº 2.652, de 20 de julho de 2026",
+    "orgao_emissor": "Agência Nacional de Energia Elétrica (ANEEL) / Superintendência de Inovação e Transição Energética",
+    "classification": "Despacho",
+    "grau_urgencia": "baixa",
+    "relevance_score": 0.35,
+    "is_relevant": true,
+    "aplicavel_renovaveis": false,
+    "summary": "O Despacho nº 2.652, publicado em 24 de setembro de 2026 no Diário Oficial da União, refere-se ao Processo nº 48500.021085/2026-01 de interesse da Copel-GT (CNPJ 04.370.282/0001-70). A decisão reconhece o montante de R$ 869.396,84 referente à realização do Projeto de Gestão de código PG-6491-2017/2017 no âmbito dos programas regulados pela ANEEL. Adicionalmente, o ato administrativo declara o encerramento formal do referido projeto, disponibilizando a íntegra dos autos na plataforma legislativa do órgão regulador.",
+    "prazos_acao": [
+      {
+        "has_deadline": false,
+        "deadline_date": null,
+        "action_required": "Inexistência de pendência ou prazo regulatório com a publicação do encerramento e homologação dos valores investidos no projeto."
+      }
+    ],
+    "financial_impact": {
+      "direction": "Positivo",
+      "magnitude": "Baixo",
+      "justification": "O ato homologa e reconhece formalmente a realização financeira de R$ 869.396,84 alocados no Projeto de Gestão PG-6491-2017/2017 para a Copel-GT. O impacto é de escala baixa e circunscrito ao balanço contábil e à prestação de contas do agente em relação aos seus compromissos regulatórios."
+    },
+    "document_id": "despacho_annel_20062026.pdf",
+    "sources": {}
+  },
+  {
+    "document_name": "Portaria SNTEP/MME Nº 3.231, de 18 de Setembro de 2026",
+    "orgao_emissor": "Ministério de Minas e Energia / Secretaria Nacional de Transição Energética e Planejamento (SNTEP/MME)",
+    "classification": "Portaria",
+    "grau_urgencia": "moderada",
+    "relevance_score": 0.85,
+    "is_relevant": true,
+    "aplicavel_renovaveis": false,
+    "summary": "A Portaria SNTEP/MME nº 3.231/2026 outorga autorização para a empresa UTE Pilar Geração de Energia SPE S.A. implantar e explorar a Central Geradora Termelétrica UTE Pilar IV, localizada no município de Pilar (AL), sob o regime de Produção Independente de Energia Elétrica. O empreendimento terá capacidade instalada total de 51.676 kW (51,68 MW), dividida em cinco unidades geradoras de 10.336 kW em ciclo Otto, utilizando gás natural como combustível principal e decorrente do Leilão de Reserva de Capacidade nº 2/2026-ANEEL. A portaria estabelece marcos regulatórios e prazos rigorosos para a fase de implantação até a entrada em operação comercial prevista para 1º de outubro de 2028, além de aprovar o enquadramento do projeto no Regime Especial de Incentivos para o Desenvolvimento da Infraestrutura (REIDI).",
+    "prazos_acao": [
+      {
+        "has_deadline": true,
+        "deadline_date": "2026-09-30",
+        "action_required": "Comprovação do aporte de capital social ou obtenção do financiamento referente a pelo menos 20% do montante necessário à implantação do empreendimento."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2026-10-22",
+        "action_required": "Inserção do organograma do Grupo Econômico em sistema eletrônico disponibilizado pela ANEEL (prazo de 30 dias após a publicação)."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2027-03-18",
+        "action_required": "Comprovação de celebração de instrumento contratual de fornecimento de combustível."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2027-03-30",
+        "action_required": "Obtenção da Licença Ambiental de Instalação (LI)."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2027-04-01",
+        "action_required": "Comprovação de celebração de instrumento contratual de fornecimento de equipamentos eletromecânicos ou EPC."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2027-07-01",
+        "action_required": "Início das obras do Sistema de Transmissão de interesse restrito (subestação 13,8/230 kV e linha de 24 km em 230 kV interligando à SE Rio Largo II)."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2027-10-01",
+        "action_required": "Início das Obras Civis das Estruturas da central geradora."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2027-11-01",
+        "action_required": "Início da Montagem Eletromecânica das Unidades Geradoras."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2028-08-31",
+        "action_required": "Conclusão da Montagem Eletromecânica das Unidades Geradoras."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2028-09-01",
+        "action_required": "Início da Operação em Teste da 1ª à 5ª Unidade Geradora."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2028-10-01",
+        "action_required": "Início da Operação Comercial da 1ª à 5ª Unidade Geradora."
+      }
+    ],
+    "financial_impact": {
+      "direction": "Positivo",
+      "magnitude": "Alto",
+      "justification": "A outorga viabiliza a execução do investimento privado de R$ 271.112.000,00 no setor elétrico nacional (Submercado Nordeste). O enquadramento no REIDI concede um benefício de desoneração fiscal de R$ 25.077.000,00 referente à isenção de PIS/PASEP e COFINS sobre bens e serviços (reduzindo o investimento líquido para R$ 246.035.000,00). Adicionalmente, exige a manutenção de Garantia de Fiel Cumprimento no valor de R$ 13.555.600,00. No âmbito do mercado elétrico, a entrada em operação de 51,68 MW de potência térmica firme reduz riscos de déficit em horários de pico e atenua a volatilidade do Preço de Liquidação das Diferenças (PLD) no Submercado Nordeste, cujos dados históricos e semanais do ano de 2026 demonstram picos horários superiores a R$ 1.000,00/MWh no período das 18h às 19h."
+    },
+    "document_id": "portaria_annel_18082026.pdf",
+    "sources": {}
+  },
+  {
+    "document_name": "Portaria SNTEP/MME nº 3.204/2026",
+    "orgao_emissor": "Ministério de Minas e Energia / Secretaria Nacional de Transição Energética e Planejamento (SNTEP/MME)",
+    "classification": "Portaria",
+    "grau_urgencia": "moderada",
+    "relevance_score": 0.85,
+    "is_relevant": true,
+    "aplicavel_renovaveis": false,
+    "summary": "A Portaria SNTEP/MME autoriza a empresa Termocorcovado S.A. a implantar e explorar a usina termelétrica UTE Corcovado 03 no município de Pojuca, Bahia, sob o regime de Produção Independente de Energia Elétrica. A central geradora será composta por 13 unidades geradoras de 3.846 kW a gás natural, totalizando 49.998 kW de capacidade instalada e 0 kWmédios de garantia física. O ato aprova o enquadramento do projeto no Regime Especial de Incentivos para o Desenvolvimento da Infraestrutura (REIDI), com execução prevista até agosto de 2029. A outorga vigora pelo prazo de 35 anos, mediante prestação de garantia de fiel cumprimento no valor de R$ 11,25 milhões.",
+    "prazos_acao": [
+      {
+        "has_deadline": true,
+        "deadline_date": "2027-04-01",
+        "action_required": "Obtenção da Licença Ambiental de Instalação (LI)."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2027-09-01",
+        "action_required": "Comprovação de celebração de instrumento contratual de fornecimento de equipamentos eletromecânicos ou EPC."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2027-12-31",
+        "action_required": "Comprovação de aporte de capital/financiamento de no mínimo 20% do investimento e contratação de fornecimento de combustível."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2028-03-01",
+        "action_required": "Início das obras civis das estruturas."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2028-08-01",
+        "action_required": "Início das obras do sistema de transmissão de interesse restrito (linha de 69 kV até a SE Catu)."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2028-10-01",
+        "action_required": "Início da montagem eletromecânica das unidades geradoras."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2029-06-30",
+        "action_required": "Conclusão da montagem eletromecânica das unidades geradoras."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2029-07-01",
+        "action_required": "Início da operação em teste das 13 unidades geradoras."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2029-08-01",
+        "action_required": "Início da operação comercial das 13 unidades geradoras."
+      }
+    ],
+    "financial_impact": {
+      "direction": "Positivo",
+      "magnitude": "Alto",
+      "justification": "A portaria formaliza a outorga e a desoneração tributária federal do empreendimento por meio do REIDI. O investimento total estimado de R$ 225.000.000,00 (com incidência de PIS/COFINS) é reduzido para R$ 204.187.500,00 (sem incidência), gerando um benefício de desoneração fiscal estimado em R$ 20.812.500,00 durante a fase de implantação. A empresa deverá aportar uma Garantia de Fiel Cumprimento de R$ 11.250.000,00. O projeto insere 49,99 MW de capacidade termelétrica no submercado Nordeste, reduzindo riscos de ponta no SIN, enquanto dados históricos do PLD indicam volatilidade e picos de valoração horária no submercado Nordeste e SIN em períodos de ponta do segundo semestre."
+    },
+    "document_id": "portaria_annel_17082026.pdf",
+    "sources": {
+      "bnamericas.com": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEO7gVCByUutCGgsPfE4ZZIDYA1hZQ6vpSFrr4Do54eCzSD3Ozqgc4Hz7ORS6vD6dYswt-MUhv-UwFxK7z-2TbKbM_ATCyomx8nLUqDksX10NBNTMPk02c1CycIYXngnq5RZtIHMr-9lMuXlWAfUgHzqWf4",
+      "atlaspublico.com.br": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFDSvAifYAoJmR7aV6c8StBjWBh7zcASMJxtib2YeXQ4AtO-xM9dpaBEHnXUHUqDOBB0wMybo-vk1EJzXhpHyrUHkVIY45qY15BRhqVMiZlSoyic4NYaRhGJSIBh9Ph-TgUzVpxOQKOGDjipK2aWNbUMS9GiRzFC2gaoZyz36a8kb0K-Y_SPNtbgh8MtKXjzjFzph4iBAg="
+    }
+  },
+  {
+    "document_name": "Despacho ANEEL/STEX nº 2.656/2026",
+    "orgao_emissor": "Agência Nacional de Energia Elétrica (ANEEL) / Superintendência de Inovação e Transição Energética",
+    "classification": "Despacho",
+    "grau_urgencia": "baixa",
+    "relevance_score": 0.25,
+    "is_relevant": false,
+    "aplicavel_renovaveis": true,
+    "summary": "O Despacho nº 2.656, de 20 de julho de 2026, reconhece o montante de R$ 502.036,16 investidos pela Norte Energia S.A. na realização do Projeto de Gestão de código PG-7427-1718/2017. A decisão formaliza a aprovação de contas do projeto e declara o seu encerramento oficial no âmbito do Programa de P&D/Inovação regulado pela ANEEL. O ato foi publicado no Diário Oficial da União na edição de 24 de setembro de 2026. A íntegra do processo administrativo nº 48500.021096/2026-82 está acessível na plataforma regulatória do órgão emissor.",
+    "prazos_acao": [
+      {
+        "has_deadline": false,
+        "deadline_date": null,
+        "action_required": "Nenhuma ação obrigatória com prazo estipulado para os agentes do setor elétrico."
+      }
+    ],
+    "financial_impact": {
+      "direction": "Neutro",
+      "magnitude": "Baixo",
+      "justification": "O documento possui efeito estritamente administrativo para a quitação e encerramento contábil de projeto do Programa de Pesquisa, Desenvolvimento e Inovação (P&D) da Norte Energia S.A. (operadora da UHE Belo Monte, CNPJ 12.300.288/0001-07). O montante reconhecido de R$ 502.036,16 é pontual e sem reflexos diretos na precificação horária/semanal do Preço de Liquidação das Diferenças (PLD) nos submercados (Norte, Nordeste, Sudeste e Sul), nem nas métricas globais do fator de alavancagem dos comercializadores e geradores do mercado livre."
+    },
+    "document_id": "despacho_annel_20062026-02.pdf",
+    "sources": {
+      "norteenergiasa.com.br": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHVX4LJiJL2d7J5VE3jMauoGPOcOj2h2rQlykRGCA4YFcwSwr_gfc1Guzo0jwi3A4E4ZIHVzrbwySFNqGw_id4zIkPoR-qIO2sopgHKLpaEvlH3tzWZfOsU7WKZkJ1p0unD1N7bI1RKIUyOR8UUhakBgRa7FjTDeo31xnMnWnrMIBQBFvQJqM5hZHMibgB2"
+    }
+  },
+  {
+    "document_name": "Despacho ANEEL nº 3.691, de 22 de setembro de 2026",
+    "orgao_emissor": "ANEEL - Agência Nacional de Energia Elétrica",
+    "classification": "Despacho",
+    "grau_urgencia": "moderada",
+    "relevance_score": 0.75,
+    "is_relevant": true,
+    "aplicavel_renovaveis": true,
+    "summary": "O Diretor-Geral da ANEEL indeferiu o pedido de reabertura de prazo para adesão ao mecanismo de extensão de outorga decorrente da Lei nº 14.052/2020, formulado pela Coteminas S.A. (em Recuperação Judicial), relativo à UHE Porto Estrela. A decisão ratifica o entendimento da Diretoria Colegiada pela manutenção da preclusão temporal e rigidez dos prazos estabelecidos para a repactuação do risco hidrológico (GSF). Como consequência, a geradora hidrelétrica não poderá obter a extensão do prazo da concessão para o ativo em questão.",
+    "prazos_acao": [
+      {
+        "has_deadline": false,
+        "deadline_date": null,
+        "action_required": "Nenhuma ação adicional exigida por parte dos agentes de mercado além da manutenção do indeferimento decisório estabelecido pela ANEEL."
+      }
+    ],
+    "financial_impact": {
+      "direction": "Negativo",
+      "magnitude": "Médio",
+      "justification": "O indeferimento impede a Coteminas S.A. de estender o prazo de concessão da UHE Porto Estrela sob os termos da Lei nº 14.052/2020, impactando negativamente a valoração e amortização dos custos passados com o risco hidrológico (GSF) no ativo. Para o setor e o mercado de curto prazo (onde o PLD médio semanal no mês da publicação se situou entre R$ 101,02 e R$ 130,27/MWh), a decisão preserva a estabilidade das liquidações na CCEE e a segurança jurídica ao não reabrir prazos já encerrados."
+    },
+    "document_id": "despacho_annel_22092026-02.pdf",
+    "sources": {}
+  },
+  {
+    "document_name": "Portaria SNTEP/MME nº 3.207/2026",
+    "orgao_emissor": "Ministério de Minas e Energia / Secretaria Nacional de Transição Energética e Planejamento",
+    "classification": "Portaria",
+    "grau_urgencia": "alta",
+    "relevance_score": 0.85,
+    "is_relevant": true,
+    "aplicavel_renovaveis": false,
+    "summary": "A Portaria SNTEP/MME nº 3.207, de 17 de setembro de 2026, autoriza a UTE Pilar Geração de Energia SPE S.A. a implantar e explorar a central geradora termelétrica UTE Pilar V, localizada no município de Pilar, Estado de Alagoas. A usina operará a gás natural com capacidade instalada de 51.676 kW, composta por cinco unidades geradoras de 10.336 kW cada, em regime de Produção Independente de Energia Elétrica. O ato estabelece os marcos do cronograma do empreendimento com início da operação comercial até 1º de outubro de 2028, além de aprovar o enquadramento do projeto no Regime Especial de Incentivos para o Desenvolvimento da Infraestrutura (REIDI).",
+    "prazos_acao": [
+      {
+        "has_deadline": true,
+        "deadline_date": "2026-09-30",
+        "action_required": "Comprovação do aporte de capital ou obtenção de financiamento referente a pelo menos 20% do montante necessário à implantação do empreendimento."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2027-03-18",
+        "action_required": "Comprovação de celebração de instrumento contratual de fornecimento do combustível principal (gás natural)."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2027-03-30",
+        "action_required": "Obtenção da Licença Ambiental de Instalação (LI)."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2027-04-01",
+        "action_required": "Comprovação de celebração de instrumento contratual de fornecimento de equipamentos eletromecânicos ou contrato EPC."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2027-07-01",
+        "action_required": "Início das obras do sistema de transmissão de interesse restrito (subestação 13,8/230 kV e LT em 230 kV com 24 km de extensão)."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2027-10-01",
+        "action_required": "Início das obras civis das estruturas."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2027-11-01",
+        "action_required": "Início da montagem eletromecânica das unidades geradoras."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2028-08-31",
+        "action_required": "Conclusão da montagem eletromecânica das unidades geradoras."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2028-09-01",
+        "action_required": "Início da operação em teste da 1ª à 5ª unidade geradora."
+      },
+      {
+        "has_deadline": true,
+        "deadline_date": "2028-10-01",
+        "action_required": "Início da operação comercial da 1ª à 5ª unidade geradora."
+      }
+    ],
+    "financial_impact": {
+      "direction": "Positivo",
+      "magnitude": "Alto",
+      "justification": "A portaria viabiliza o investimento privado de R$ 271.112.000,00 (R$ 246.035.000,00 sem PIS/COFINS) para a construção do empreendimento térmico em Alagoas. A aprovação do enquadramento no REIDI reduz a carga tributária incidente sobre aquisições de bens e serviços durante a fase de implantação, fortalecendo a atratividade econômica e o fluxo de caixa do projeto, ao mesmo tempo em que vincula uma Garantia de Fiel Cumprimento no valor de R$ 13.555.600,00."
+    },
+    "document_id": "portaria_annel_17082026-02.pdf",
+    "sources": {}
+  }
+]

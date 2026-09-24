@@ -6,6 +6,5 @@ node_modules/
 Thumbs.db
 .vscode/
 .idea/
-hackaton/
 SCHEMA.md
 RESEARCH_PROMPT.md
