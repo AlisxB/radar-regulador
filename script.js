@@ -265,7 +265,7 @@ function renderDetail(){
             <span class="badge ${p.has_deadline ? "critica" : "baixa"} mono">${p.has_deadline ? "HAS_DEADLINE" : "SEM PRAZO"}</span>
             ${p.deadline_date ? `<span class="mono" style="font-size:11px">${esc(fmtDeadline(p.deadline_date))}</span>` : ""}
           </div>
-          <div class="mono" style="font-size:12px;color:#d4d4d8;line-height:1.5">${esc(p.action_required)}</div>
+          <div class="mono" style="font-size:12px;color:var(--text);line-height:1.5">${esc(p.action_required)}</div>
         </div>
       `).join("")}
     </div>
@@ -275,10 +275,10 @@ function renderDetail(){
       ${d.financial_impact ? `
         <div style="display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;gap:6px;flex-wrap:wrap">
-            <span class="mono" style="font-size:11px;border:1px solid var(--border);border-radius:6px;padding:4px 8px;background:#18181b">${esc(d.financial_impact.direction)}</span>
-            <span class="mono" style="font-size:11px;border:1px solid var(--border);border-radius:6px;padding:4px 8px;background:#18181b">${esc(d.financial_impact.magnitude)}</span>
+            <span class="mono" style="font-size:11px;border:1px solid var(--border-2);border-radius:6px;padding:4px 8px;background:#F3F8FF;color:var(--text)">${esc(d.financial_impact.direction)}</span>
+            <span class="mono" style="font-size:11px;border:1px solid var(--border-2);border-radius:6px;padding:4px 8px;background:#F3F8FF;color:var(--text)">${esc(d.financial_impact.magnitude)}</span>
           </div>
-          ${d.financial_impact.justification ? `<div class="mono" style="font-size:12px;color:#e4e4e7;line-height:1.5">${esc(d.financial_impact.justification)}</div>` : ""}
+          ${d.financial_impact.justification ? `<div class="mono" style="font-size:12px;color:var(--text);line-height:1.5">${esc(d.financial_impact.justification)}</div>` : ""}
         </div>
       ` : `<div class="mono" style="font-size:12px;color:var(--muted-2);border:1px dashed var(--border);border-radius:10px;padding:12px">sem impacto financeiro mapeado</div>`}
     </div>
@@ -290,7 +290,7 @@ function renderDetail(){
           ${d.traceability.map(t => `
             <div class="trace" style="padding:8px 12px">
               <div class="mono" style="font-size:9px;color:var(--muted-2);margin-bottom:4px">${esc(t.article_or_section || "—")}</div>
-              <div class="mono" style="font-size:11px;line-height:1.6;color:#d4d4d8">“${esc(t.exact_quote)}”</div>
+              <div class="mono" style="font-size:11px;line-height:1.6;color:var(--text)">“${esc(t.exact_quote)}”</div>
             </div>
           `).join("")}
         </div>
@@ -313,7 +313,7 @@ function renderDetail(){
         <div id="chatLog" style="display:flex;flex-direction:column;gap:8px;max-height:280px;overflow:auto;margin-bottom:8px"></div>
         <div id="chatError" class="mono" style="font-size:11px;color:var(--red);min-height:14px"></div>
         <div style="display:flex;gap:8px;margin-top:8px;align-items:flex-end">
-          <textarea id="chatInput" class="mono" rows="2" placeholder="pergunte sobre este documento…" style="flex:1;resize:vertical;background:#0f0f10;color:var(--text);border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-size:12px;outline:none"></textarea>
+          <textarea id="chatInput" class="mono" rows="2" placeholder="pergunte sobre este documento…" style="flex:1;resize:vertical;background:#F7FAFF;color:var(--text);border:1px solid var(--border-2);border-radius:10px;padding:8px 10px;font-size:12px;outline:none"></textarea>
           <button id="chatSend" class="btn mono" style="height:38px">enviar</button>
         </div>
       </div>
@@ -348,7 +348,7 @@ function renderChat(d){
   const bubble = (role, content) => `
     <div style="display:flex;flex-direction:column;gap:2px;align-items:${role === "user" ? "flex-end" : "flex-start"}">
       <div class="mono" style="font-size:9px;color:var(--muted-2)">${role === "user" ? "você" : "agente"}</div>
-      <div style="max-width:90%;white-space:pre-wrap;font-size:12px;line-height:1.5;padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:${role === "user" ? "#1f1f23" : "#0f0f10"};color:#e4e4e7">${esc(content)}</div>
+      <div style="max-width:90%;white-space:pre-wrap;font-size:12px;line-height:1.5;padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:${role === "user" ? "#1f1f23" : "#0f0f10"};color:var(--text)">${esc(content)}</div>
     </div>`;
   log.innerHTML = c.messages.map(m => bubble(m.role, m.content)).join("") + (c.loading ? bubble("assistant", "…pensando") : "");
   const panel = document.getElementById("chatPanel");
